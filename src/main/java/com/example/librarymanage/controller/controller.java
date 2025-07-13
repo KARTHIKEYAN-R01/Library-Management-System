@@ -29,7 +29,7 @@ public class controller {
         if (!model.containsAttribute("entity")) {
             model.addAttribute("entity", new entity());
         }
-        return "Signup";  
+        return "views/Signup";  
     }
 
     
@@ -40,16 +40,16 @@ public class controller {
         if (entityRepository.existsByEmail(entity.getEmail())) {
             redirectAttributes.addFlashAttribute("errorMessage", "Email already exists!");
             redirectAttributes.addFlashAttribute("entity", entity);
-            return "redirect:/signup";  
+            return "redirect:/views/signup";  
         }
 
         entityRepository.save(entity);
-        return "redirect:/home"; 
+        return "redirect:/views/home"; 
     }
     
     @GetMapping("/login")
     public String showLoginPage() {
-    	return "login";
+    	return "views/login";
     }
     
     @PostMapping("/login")
@@ -63,21 +63,21 @@ public class controller {
         if (userOptional.isPresent()) {
 //        	entity user = userOptional.get();
 //            session.setAttribute("username", user.getUsername()); // or user.getUsername()
-            return "home"; // You can create welcome.jsp
+            return "views/home"; // You can create welcome.jsp
         } else {
             model.addAttribute("errorMessage", "Invalid email or password!");
-            return "login";
+            return "views/login";
         }
     }
     
     @GetMapping("/home")
     public String showHomePage() {
-        return "home";  
+        return "views/home";  
     }
 
     @GetMapping("/books")
     public String viewbook() {
-    	return "Books";
+    	return "views/Books";
     }
    
     
